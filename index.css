@@ -1,0 +1,21 @@
+.images{
+display: flex;
+
+
+}
+
+body{
+background-color: lavender;
+
+}
+
+#ticket{
+background-color: purple;
+
+}
+
+#rows{
+background-color: violet;
+
+}
+
