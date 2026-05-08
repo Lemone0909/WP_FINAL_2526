@@ -4,11 +4,7 @@ lucky = ["resources/index_resources/Yuta.png", "resources/index_resources/Gojo_s
 
 unlucky = ["resources/index_resources/Ken_small.jpg", "resources/index_resources/face_gojo.jpg"]
 
-sessionStorage.setItem("Money", 0)
 
-total = document.getElementById("money");
-
-total.textContent = sessionStorage.getItem("Money")
 
 
 
@@ -18,18 +14,19 @@ for (let i=0; i<2; i++){
     let box = boxes[i]
     for (let i=0; i<4; i++){
         const row = document.createElement("div");
-        row.style.backgroundColor("White")
+        row.className = "cells"
        const choice = Math.random()
-        if (choice > 0.5){
-            choice = a;
+       let letter = ""
+        if (choice > 0.8){
+            letter = "a";
         }
         else{
-            choice = b;
+            letter = "b";
         }
-        row.id = choice
-        const randomnum = Math.floor(Math.random() * 100);
-        row.textContent = `$${randomnum}`
+        row.id = letter
+        row.style.backgroundColor = "White"
         row.onclick = function(){reveal(row)};
+        box.appendChild(row)
     }
 
 }
@@ -39,28 +36,31 @@ for (let i=0; i<2; i++){
 
 
 function reveal(box){
-if (box.id == a){
+if (box.textContent == ""){
+    box.style.backgroundColor = "null"
+    const randomnum = Math.floor(Math.random() * 100);
+    box.textContent = `$${randomnum}`
+if (box.id == "a"){
     const lrandomIndex = Math.floor(Math.random() * lucky.length);
     const limage = lucky[lrandomIndex];
-    box.style.backgroundImage(limage);
+    box.style.backgroundImage = `url(${limage})`;
     monupdate(box);
 }
 
-if (box.id == b){
+if (box.id == "b"){
     const urandomIndex = Math.floor(Math.random() * unlucky.length);
     const uimage = unlucky[urandomIndex];
-    box.style.backgroundImage(uimage);
+    box.style.backgroundImage = `url(${uimage})`;
 }
-
 }
-
+}
 function monupdate(box){
 const money = box.textContent;
-const cleaned = Number(money.split($)[1]);
-const curr = sessionStorage.getItem("Money");
+const cleaned = Number(money.split("$")[1]);
+const total = document.getElementById("money");
+let curr = Number(total.textContent.split("$")[1]);
 curr += cleaned;
-total.textContent = curr;
-sessionStorage.setItem("Money", curr);
+total.textContent = `$${curr}`;
 }
 
 function restartclick(div){

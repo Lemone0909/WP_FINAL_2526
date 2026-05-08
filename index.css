@@ -1,6 +1,6 @@
 .images{
 display: flex;
-
+flex-direction: row;
 
 }
 
@@ -11,11 +11,35 @@ background-color: lavender;
 
 #ticket{
 background-color: purple;
-
+display:flex;
+flex-direction: row;
+position: relative;
+padding: 3%
 }
 
 #rows{
 background-color: violet;
+display:flex;
+flex-direction: column;
+padding: 3%
+}
+
+.row{
+display: flex;
+flex-direction: row;
+padding: 3%
 
 }
 
+.cells{
+padding: 3%;
+width: 10vw;
+height: 10vh;
+background-size: cover;
+}
+
+
+img{
+width: 10vw;
+height: 10vh;
+}
